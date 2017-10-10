@@ -1,48 +1,42 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
+#include"lab3.h"
 using namespace std;
 
-class Fraction
-{
-    private:
-        int x;//числитель
-        int y;//знаминатель
-    public:
-        static int count;
-        
-        Fraction(int a=0, int b=1){
+
+Fraction::Fraction(int a=0, int b=1){
             x=a;
             y=b;
             //count=0;        
         }
         
-        int Set(int a, int b=1){
+        int Fraction::Set(int a, int b=1){
             x=a;
             y=b;// count++;
             return 0;
             
         }
         //set(double a);
-        ~Fraction(){cout<< "Сработал деструктор!"<<endl;}// как грамотно реализовать уборку мусора в классе;
-        Fraction operator+ (const Fraction &a)
+        Fraction::~Fraction(){cout<< "Сработал деструктор!"<<endl;}// как грамотно реализовать уборку мусора в классе;
+        Fraction Fraction::operator+ (const Fraction &a)
         {
             return Fraction(x*a.y+y*a.x,y *a.y);
         }
-        Fraction operator* (Fraction &right){
+        Fraction Fraction::operator* (Fraction &right){
             return Fraction(x*right.x,y *right.y);
         }
-        Fraction operator- (const Fraction &a)
+        Fraction Fraction::operator- (const Fraction &a)
         {
             return Fraction(x*a.y-y*a.x,y *a.y);
         }
-        Fraction operator/ (  Fraction &right){
+        Fraction Fraction::operator/ (  Fraction &right){
             return Fraction(x*right.y,y *right.x);}
 
-        void Print(){
+        void Fraction::Print(){
             cout<<x<<"/"<<y<<endl;
         }
-};
+
 
 int main()
 {
@@ -59,7 +53,7 @@ int main()
     v=new Fraction[n];
     v2=new Fraction[n];
 
-    //int Fraction::count=n;
+    t.count=n;
 
     
     for(int i=0;i<n;i++){
