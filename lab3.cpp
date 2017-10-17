@@ -42,35 +42,43 @@ public:
             cout<<temp->x<<" "; 
             temp=temp->next; 
          }
+	 cout<<endl;
     }
 
     int Swap(int a, int b){
         int n,m,i=1;
-        element *temp=head,*tempxta,*tempxtb,*pra,*prb;
+        element *temp=head, *temp1, *tempxta,*tempxtb,*pra,*prb;
 
         if(a<b){n=--a;m=--b;}else if(a>b){n=--b;m=--a;}
 
         while (i<=m) 
         {
            
-           if(i==n){
+           if (i==n){
                pra=temp;
            }
            if (i==m){
-            prb=temp;
+               prb=temp;
            }
+
             temp=temp->next;
             i++; 
           
         }
         
-        temp=pra->next;
-        tempxta=pra->next->next;
-        tempxtb=prb->next->next;
-        pra->next=prb->next;
-        pra->next=temp;
-        pra->next->next=tempxtb;
-        prb->next->next=tempxta;
+        if (n>0) { temp=pra->next; } else { temp = head; } // если a элемент не первый в списке, сохраняем эл. a, иначе он остаётся head
+        temp1=prb->next; // сохраняем эл. b
+
+	tempxta=temp->next; // сохраняем ссылку на след за а 
+	tempxtb=temp1->next; // сохраняем ссылку на след за b
+ 
+        if (n>0) { pra->next=prb->next; } else { head=prb->next; } // если а - первый в списке, b становится головой списка
+        prb->next=temp; // элементы мы поменяли
+
+
+	temp1->next=tempxta; // восстанавливаем связи
+	temp->next=tempxtb;  // восстанавливаем связи
+
         return 0;
 
 
